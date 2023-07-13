@@ -25,7 +25,7 @@ As a computer scientist with a passion for problem-solving and an interest in co
 The benefits of this project include:
 - It's a practical application of **object-oriented design** and **data persistence**.
 - It caters to a real-world need, thereby offering a tool of genuine utility for food enthusiasts.
-- It is manageable for a beginner programmer, yet offers room for enhancements as skills evolve.
+- It is manageable for a beginner programmer such as myself, yet offers room for enhancements as skills evolve.
 
 **PlatterPedia** ultimately offers an engaging platform to apply and advance programming skills while simultaneously contributing to the world of culinary enthusiasts.
 
