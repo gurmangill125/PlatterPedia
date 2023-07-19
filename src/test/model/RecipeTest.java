@@ -4,10 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+// Represents test cases for the Recipe class
 public class RecipeTest {
 
     private Recipe recipe;
 
+    // EFFECTS: sets up the testing environment before each test case
     @BeforeEach
     public void setUp() {
         recipe = new Recipe("Pancake", "Mix the ingredients and cook them on a pan.");
