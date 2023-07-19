@@ -33,9 +33,8 @@ The benefits of this project include:
 
 The following user stories depict the core functionalities and use-cases of the **PlatterPedia** application:
 
-1. **Adding a Recipe**: As a user, I want to be able to add a new recipe to my RecipeBook in PlatterPedia. This includes the title of the recipe, ingredients, preparation time, cooking time, servings, and detailed cooking instructions.
+1. **Adding a Recipe**: As a user, I want to be able to add a new recipe to my RecipeBook in PlatterPedia.
 2. **Viewing Recipes**: As a user, I want to be able to view the list of all the recipes I have added to my RecipeBook in PlatterPedia, where each recipe is represented by its title.
-3. **Viewing Recipe Details**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and view its complete details, including ingredients, preparation time, cooking time, servings, and detailed cooking instructions.
+3. **Viewing Recipe Details**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and view its complete details.
 4. **Rating a Recipe**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and rate it on a scale of one to five stars based on my personal experience with it.
 5. **Deleting a Recipe**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and delete it if I no longer want to keep it in my collection.
-6. **Saving and Loading**: As a user, I want to be able to save the state of my application so that I can close it, reopen it later, and continue from where I left off.
