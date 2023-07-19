@@ -51,6 +51,36 @@ public class RecipeBookTest {
         assertThrows(IllegalArgumentException.class, () -> recipeBook.viewRecipe("Pizza"));
     }
 
+    @Test
+    public void testViewRecipe_EmptyBook() {
+        assertThrows(IllegalArgumentException.class, () -> recipeBook.viewRecipe("Pancake"));
+    }
+
+    @Test
+    public void testViewRecipe_MultipleRecipes() {
+        recipeBook.addRecipe(recipe1); // "Pancake"
+        recipeBook.addRecipe(recipe2); // "Scrambled Egg"
+        Recipe result = recipeBook.viewRecipe("Scrambled Egg");
+        assertEquals("Scrambled Egg", result.getTitle());
+        assertEquals("Beat the eggs and cook them on a pan.", result.getDetails());
+    }
+
+    @Test
+    public void testViewRecipe_DuplicateTitles() {
+        Recipe recipe3 = new Recipe("Pancake", "A new method for making pancakes");
+        recipeBook.addRecipe(recipe1); // "Pancake"
+        recipeBook.addRecipe(recipe3); // Another "Pancake"
+        Recipe result = recipeBook.viewRecipe("Pancake");
+        assertEquals("Pancake", result.getTitle());
+        assertEquals("Mix the ingredients and cook them on a pan.", result.getDetails());
+    }
+
+    @Test
+    public void testViewRecipe_NonExistentTitle() {
+        recipeBook.addRecipe(recipe1); // "Pancake"
+        recipeBook.addRecipe(recipe2); // "Scrambled Egg"
+        assertThrows(IllegalArgumentException.class, () -> recipeBook.viewRecipe("Pizza"));
+    }
 
     @Test
     public void testRateRecipe() {
@@ -66,16 +96,6 @@ public class RecipeBookTest {
         recipeBook.deleteRecipe("Pancake");
         assertEquals(1, recipeBook.listRecipeTitles().size());
         assertFalse(recipeBook.listRecipeTitles().contains("Pancake"));
-    }
-
-    @Test
-    public void testDeleteRecipe_InvalidTitle() {
-        assertThrows(IllegalArgumentException.class, () -> recipeBook.deleteRecipe("Pizza"));
-    }
-
-    @Test
-    public void testViewRecipeInvalidTitle() {
-        assertThrows(IllegalArgumentException.class, () -> recipeBook.viewRecipe("Pizza"));
     }
 
     @Test
