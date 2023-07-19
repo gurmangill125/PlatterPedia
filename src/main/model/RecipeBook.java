@@ -44,6 +44,7 @@ public class RecipeBook {
     }
 
     // EFFECTS: returns a recipe matching the given title, throws an exception if the recipe does not exist
+    //          if two titles are the same, return first one found
     public Recipe viewRecipe(String title) {
         for (Recipe recipe : this.recipes) {
             if (recipe.getTitle().equals(title)) {

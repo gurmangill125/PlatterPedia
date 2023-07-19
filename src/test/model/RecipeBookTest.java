@@ -78,4 +78,14 @@ public class RecipeBookTest {
         assertThrows(IllegalArgumentException.class, () -> recipeBook.viewRecipe("Pizza"));
     }
 
+    @Test
+    public void testViewRecipe_MultipleRecipesWithSameTitle() {
+        Recipe recipe3 = new Recipe("Pancake", "Different method for pancakes");
+        recipeBook.addRecipe(recipe1);  // "Pancake"
+        recipeBook.addRecipe(recipe3);  // Another "Pancake"
+        Recipe result = recipeBook.viewRecipe("Pancake");
+        assertEquals("Pancake", result.getTitle());
+        assertEquals("Mix the ingredients and cook them on a pan.", result.getDetails());
+    }
+
 }
