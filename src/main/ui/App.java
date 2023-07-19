@@ -16,6 +16,7 @@ public class App {
         scanner = new Scanner(System.in);
     }
 
+    // Following code inspired by TellerApp class in TellerApp project
     // MODIFIES: this
     // EFFECTS: starts the application, provides a menu for user to interact with the app
     public void start() {

@@ -35,6 +35,7 @@ public class Recipe {
         this.rating = rating;
     }
 
+    // The following code is inspired from the Account class in the TellerApp project:
     // EFFECTS: returns a string representation of the recipe, its details, and rating
     @Override
     public String toString() {
