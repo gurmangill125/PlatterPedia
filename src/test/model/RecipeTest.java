@@ -1,42 +1,53 @@
 package model;
 
-import model.Recipe;
-import model.RecipeBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RecipeTest {
-    private RecipeBook recipeBook;
-    private Recipe testRecipe;
+
+    private Recipe recipe;
 
     @BeforeEach
     public void setUp() {
-        recipeBook = new RecipeBook();
-        testRecipe = new Recipe("Test Recipe", "Test Recipe Details");
+        recipe = new Recipe("Pancake", "Mix the ingredients and cook them on a pan.");
     }
 
     @Test
-    public void testAddRecipe() {
-        recipeBook.addRecipe(testRecipe);
-        assertTrue(recipeBook.getRecipes().contains(testRecipe));
+    public void testGetTitle() {
+        assertEquals("Pancake", recipe.getTitle());
     }
 
     @Test
-    public void testAddRecipe_Null() {
-        assertThrows(IllegalArgumentException.class, () -> recipeBook.addRecipe(null));
+    public void testGetDetails() {
+        assertEquals("Mix the ingredients and cook them on a pan.", recipe.getDetails());
     }
 
     @Test
-    public void testRemoveRecipe() {
-        recipeBook.addRecipe(testRecipe);
-        recipeBook.removeRecipe(testRecipe);
-        assertFalse(recipeBook.getRecipes().contains(testRecipe));
+    public void testGetRating_NotYetRated() {
+        assertEquals(0, recipe.getRating());
     }
 
     @Test
-    public void testGetRecipes_Empty() {
-        assertTrue(recipeBook.getRecipes().isEmpty());
+    public void testRate() {
+        recipe.rate(4);
+        assertEquals(4, recipe.getRating());
+    }
+
+    @Test
+    public void testRate_TooLow() {
+        assertThrows(IllegalArgumentException.class, () -> recipe.rate(0));
+    }
+
+    @Test
+    public void testRate_TooHigh() {
+        assertThrows(IllegalArgumentException.class, () -> recipe.rate(6));
+    }
+
+    @Test
+    public void testToString() {
+        recipe.rate(5);
+        String expected = "Title: Pancake\nDetails: Mix the ingredients and cook them on a pan.\nRating: 5";
+        assertEquals(expected, recipe.toString());
     }
 }
