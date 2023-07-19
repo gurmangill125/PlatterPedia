@@ -72,4 +72,10 @@ public class RecipeBookTest {
     public void testDeleteRecipe_InvalidTitle() {
         assertThrows(IllegalArgumentException.class, () -> recipeBook.deleteRecipe("Pizza"));
     }
+
+    @Test
+    public void testViewRecipeInvalidTitle() {
+        assertThrows(IllegalArgumentException.class, () -> recipeBook.viewRecipe("Pizza"));
+    }
+
 }

@@ -27,15 +27,6 @@ public class RecipeBook {
         return titles;
     }
 
-    // EFFECTS: returns a recipe matching the given title, throws an exception if the recipe does not exist
-    public Recipe viewRecipe(String title) {
-        for (Recipe recipe : this.recipes) {
-            if (recipe.getTitle().equals(title)) {
-                return recipe;
-            }
-        }
-        throw new IllegalArgumentException("No recipe found with the given title.");
-    }
 
     // REQUIRES: rating between 1 and 5 inclusive
     // MODIFIES: recipe
@@ -50,5 +41,15 @@ public class RecipeBook {
     public void deleteRecipe(String title) {
         Recipe recipe = this.viewRecipe(title);
         this.recipes.remove(recipe);
+    }
+
+    // EFFECTS: returns a recipe matching the given title, throws an exception if the recipe does not exist
+    public Recipe viewRecipe(String title) {
+        for (Recipe recipe : this.recipes) {
+            if (recipe.getTitle().equals(title)) {
+                return recipe;
+            }
+        }
+        throw new IllegalArgumentException("No recipe found with the given title.");
     }
 }
