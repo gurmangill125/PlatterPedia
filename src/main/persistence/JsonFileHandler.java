@@ -7,9 +7,11 @@ import java.nio.file.Path;
 
 // A utility class that provides methods to handle reading from and writing to JSON files.
 // Code inspired by JsonSerializationDemo, specifically JsonReader and JsonWriter classes
-
 public class JsonFileHandler {
 
+    private JsonFileHandler() {
+
+    }
 
     // REQUIRES: filename - a valid filename of a JSON file located in the "./data/" directory
     // EFFECTS: reads the content from the given file and converts it into a JSONArray
