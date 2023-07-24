@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // Represents a collection of recipes as a recipe book
 public class RecipeBook {
     private List<Recipe> recipes;
@@ -52,5 +55,24 @@ public class RecipeBook {
             }
         }
         throw new IllegalArgumentException("No recipe found with the given title.");
+    }
+
+    // EFFECTS: returns this recipe book as a JSON array
+    public JSONArray toJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Recipe recipe : this.recipes) {
+            jsonArray.put(recipe.toJson());
+        }
+        return jsonArray;
+    }
+
+    // EFFECTS: Returns a new recipe book from a JSON array
+    public static RecipeBook fromJson(JSONArray jsonArray) {
+        RecipeBook recipeBook = new RecipeBook();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject json = jsonArray.getJSONObject(i);
+            recipeBook.addRecipe(Recipe.fromJson(json));
+        }
+        return recipeBook;
     }
 }

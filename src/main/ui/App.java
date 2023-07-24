@@ -5,6 +5,11 @@ import java.util.Scanner;
 import model.RecipeBook;
 import model.Recipe;
 
+import java.io.IOException;
+import org.json.JSONArray;
+import persistence.JsonFileHandler;
+
+
 // Represents the user interface of the application.
 public class App {
     private RecipeBook recipeBook;
@@ -16,18 +21,26 @@ public class App {
         scanner = new Scanner(System.in);
     }
 
+
+
     // Following code inspired by TellerApp class in TellerApp project
     // MODIFIES: this
     // EFFECTS: starts the application, provides a menu for user to interact with the app
     public void start() {
+        if (askUser("Would you like to load your recipes from file? (y/n)")) {
+            try {
+                JSONArray jsonArray = JsonFileHandler.readJsonFile("myFile.json");
+                recipeBook = RecipeBook.fromJson(jsonArray);
+            } catch (IOException e) {
+                System.out.println("Error reading file.");
+            }
+        }
         String action;
         do {
             printMenu();
             action = scanner.nextLine();
             handleAction(action);
-        } while (!action.equals("6"));
-
-        System.out.println("Thank you for using PlatterPedia. Goodbye!");
+        } while (!action.equals("7"));
     }
 
     // EFFECTS: prints the menu of the application
@@ -38,7 +51,8 @@ public class App {
         System.out.println("3. View a recipe in detail");
         System.out.println("4. Rate a recipe");
         System.out.println("5. Delete a recipe");
-        System.out.println("6. Exit");
+        System.out.println("6. Save recipes to file");
+        System.out.println("7. Exit");
         System.out.print("Choose an action: ");
     }
 
@@ -61,6 +75,30 @@ public class App {
             case "5":
                 deleteRecipe();
                 break;
+            case "6":
+                handleSaveRecipeAction();
+                break;
+            case "7":
+                handleExitAction();
+                break;
+        }
+    }
+
+    private void handleExitAction() {
+        System.out.println("Thank you for using PlatterPedia. Goodbye!");
+        System.exit(0);
+    }
+
+
+    private void handleSaveRecipeAction() {
+        if (askUser("Would you like to save your recipes to file? (y/n)")) {
+            try {
+                JSONArray jsonArray = recipeBook.toJson();
+                JsonFileHandler.writeJsonFile("myFile.json", jsonArray);
+                System.out.println("Recipes saved to ./data/myFile.json");
+            } catch (IOException e) {
+                System.out.println("Error writing to file.");
+            }
         }
     }
 
@@ -132,4 +170,13 @@ public class App {
             System.out.println("No recipe found with the given title.");
         }
     }
+
+    // EFFECTS: Asks the user a question and returns true if the response is "y" or "yes",
+    //          false otherwise
+    private boolean askUser(String question) {
+        System.out.print(question);
+        String response = scanner.nextLine().trim().toLowerCase();
+        return response.equals("y") || response.equals("yes");
+    }
+
 }
