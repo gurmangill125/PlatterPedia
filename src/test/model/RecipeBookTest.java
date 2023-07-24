@@ -2,6 +2,8 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.List;
 
@@ -106,6 +108,41 @@ public class RecipeBookTest {
         Recipe result = recipeBook.viewRecipe("Pancake");
         assertEquals("Pancake", result.getTitle());
         assertEquals("Mix the ingredients and cook them on a pan.", result.getDetails());
+    }
+
+    @Test
+    public void testToJson() {
+        recipeBook.addRecipe(recipe1);
+        recipeBook.addRecipe(recipe2);
+        JSONArray jsonArray = recipeBook.toJson();
+
+        assertEquals(2, jsonArray.length());
+
+        // Check first recipe
+        JSONObject jsonRecipe1 = jsonArray.getJSONObject(0);
+        assertEquals(recipe1.getTitle(), jsonRecipe1.getString("title"));
+        assertEquals(recipe1.getDetails(), jsonRecipe1.getString("details"));
+        assertFalse(jsonRecipe1.has("rating"));  // No rating set
+
+        // Check second recipe
+        JSONObject jsonRecipe2 = jsonArray.getJSONObject(1);
+        assertEquals(recipe2.getTitle(), jsonRecipe2.getString("title"));
+        assertEquals(recipe2.getDetails(), jsonRecipe2.getString("details"));
+        assertFalse(jsonRecipe2.has("rating"));  // No rating set
+    }
+
+    @Test
+    public void testFromJson() {
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(recipe1.toJson());
+        jsonArray.put(recipe2.toJson());
+
+        RecipeBook recipeBookFromJson = RecipeBook.fromJson(jsonArray);
+
+        List<String> titles = recipeBookFromJson.listRecipeTitles();
+        assertEquals(2, titles.size());
+        assertTrue(titles.contains(recipe1.getTitle()));
+        assertTrue(titles.contains(recipe2.getTitle()));
     }
 
 }
