@@ -6,7 +6,7 @@ import org.json.JSONObject;
 public class Recipe {
     private String title;
     private String details;
-    private static final int NO_RATING = 0;
+    private static final int NO_RATING = -1;
     private int rating;
 
     // EFFECTS: initializes a new recipe with the given title and details, default rating is 0
@@ -36,7 +36,7 @@ public class Recipe {
     // MODIFIES: this
     // EFFECTS: sets the rating of the recipe from 1-5 stars
     public void rate(int rating) {
-        if (rating != NO_RATING && (rating < 1 || rating > 5)) {
+        if (rating < 1 || rating > 5) {
             throw new IllegalArgumentException("Rating must be between 1 and 5.");
         }
         this.rating = rating;

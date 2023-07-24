@@ -3,7 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,7 +29,7 @@ public class RecipeTest {
 
     @Test
     public void testGetRating_NotYetRated() {
-        assertEquals(0, recipe.getRating());
+        assertEquals(-1, recipe.getRating());
     }
 
     @Test
@@ -45,6 +44,10 @@ public class RecipeTest {
         assertThrows(IllegalArgumentException.class, () -> recipe.rate(6));
     }
 
+    @Test
+    public void testRate_TooLow() {
+        assertThrows(IllegalArgumentException.class, () -> recipe.rate(-1));
+    }
 
     @Test
     public void testToString() {
