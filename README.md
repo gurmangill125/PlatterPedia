@@ -38,3 +38,6 @@ The following user stories depict the core functionalities and use-cases of the 
 3. **Viewing Recipe Details**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and view its complete details.
 4. **Rating a Recipe**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and rate it on a scale of one to five stars based on my personal experience with it.
 5. **Deleting a Recipe**: As a user, I want to be able to select a recipe from my RecipeBook in PlatterPedia and delete it if I no longer want to keep it in my collection.
+6. **Save a Recipe Book**: As a user, when I select the exit option from the PlatterPedia menu, I want to be reminded to save my to-do list to file and have the option to do so or not.
+7. **Load a Recipe Book**: As a user, when I start PlatterPedia, I want to be given the option to load my to-do list from file.
+
