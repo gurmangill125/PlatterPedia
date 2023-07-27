@@ -25,23 +25,44 @@ public class GuiApp extends JFrame {
     private JButton loadButton;
 
     public GuiApp() {
-        recipeBook = new RecipeBook();
+        try {
+            // Set the Look and Feel to Dark theme
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            UIManager.put("nimbusBase", new Color(75, 79, 87));
+            UIManager.put("nimbusGrey", new Color(110, 113, 117));
+            UIManager.put("control", new Color(110, 113, 117));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
+        recipeBook = new RecipeBook();
         setSize(600, 400);
+        setTitle("PlatterPedia");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+
+        // Set title label
+        JLabel titleLabel = new JLabel("PlatterPedia");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        titleLabel.setForeground(Color.black);
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
 
         displayArea = new JTextArea();
         displayArea.setEditable(false);
+        displayArea.setForeground(Color.WHITE);
+        displayArea.setBackground(Color.DARK_GRAY);
         JScrollPane scrollPane = new JScrollPane(displayArea);
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel southPanel = new JPanel();
-        southPanel.setLayout(new GridLayout(2, 3));
+        southPanel.setLayout(new GridLayout(3, 2));
+        southPanel.setBackground(Color.DARK_GRAY);
 
         inputField = new JTextField();
         addButton = createButton("Add Recipe", new AddAction());
-        viewButton = createButton("View Recipes", new ViewAction());
-        rateButton = createButton("Rate Recipe", new RateAction());
+        viewButton = createButton("View all Recipes", new ViewAction());
+        rateButton = createButton("Rate a Recipe (1 - 5 stars)", new RateAction());
         deleteButton = createButton("Delete Recipe", new DeleteAction());
         saveButton = createButton("Save Recipes", new SaveAction());
         loadButton = createButton("Load Recipes", new LoadAction());
@@ -60,6 +81,8 @@ public class GuiApp extends JFrame {
     private JButton createButton(String text, ActionListener listener) {
         JButton button = new JButton(text);
         button.addActionListener(listener);
+        button.setForeground(Color.WHITE);
+        button.setBackground(Color.DARK_GRAY);
         return button;
     }
 
