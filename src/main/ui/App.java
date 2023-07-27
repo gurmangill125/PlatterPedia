@@ -84,12 +84,14 @@ public class App {
         }
     }
 
+    // EFFECTS: prints exit message
     private void handleExitAction() {
         System.out.println("Thank you for using PlatterPedia. Goodbye!");
         System.exit(0);
     }
 
 
+    // EFFECTS: asks where to save recipe and prints whether successful or not
     private void handleSaveRecipeAction() {
         if (askUser("Would you like to save your recipes to file? (y/n)")) {
             try {

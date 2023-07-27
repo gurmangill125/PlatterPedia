@@ -22,7 +22,7 @@ public class JsonFileHandler {
 
     // REQUIRES: filename - a valid filename where the JSON content will be written
     //           jsonArray - a valid JSONArray containing data to be written to the file
-    // MODIFIES: the file corresponding to the provided filename
+    // MODIFIES: this
     // EFFECTS: writes the jsonArray into a file located in the "./data/" directory
     public static void writeJsonFile(String filename, JSONArray jsonArray) throws IOException {
         Files.writeString(Path.of("./data/" + filename), jsonArray.toString());

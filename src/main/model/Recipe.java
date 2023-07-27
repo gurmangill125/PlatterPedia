@@ -24,6 +24,7 @@ public class Recipe {
         return details;
     }
 
+    // EFFECTS: returns true if current recipe has a rating assigned to it
     public boolean hasRating() {
         return this.rating != NO_RATING;
     }

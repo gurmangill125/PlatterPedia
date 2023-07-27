@@ -24,6 +24,7 @@ class JsonFileHandlerTest {
         jsonArray.put("test2");
     }
 
+    // ensures clean test each time by deleting existing file
     @AfterEach
     void teardown() throws IOException {
         Files.deleteIfExists(Path.of("./data/" + TEST_FILENAME));
