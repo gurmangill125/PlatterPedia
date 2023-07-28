@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import org.json.JSONArray;
@@ -24,9 +25,15 @@ public class GuiApp extends JFrame {
     private JButton saveButton;
     private JButton loadButton;
 
+    private ImageIcon addIcon;
+    private ImageIcon viewIcon;
+    private ImageIcon rateIcon;
+    private ImageIcon deleteIcon;
+    private ImageIcon saveIcon;
+    private ImageIcon loadIcon;
+
     public GuiApp() {
         try {
-            // Set the Look and Feel to Dark theme
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             UIManager.put("nimbusBase", new Color(75, 79, 87));
             UIManager.put("nimbusGrey", new Color(110, 113, 117));
@@ -35,15 +42,32 @@ public class GuiApp extends JFrame {
             ex.printStackTrace();
         }
 
+        // Load icons
+        addIcon = new ImageIcon("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Plus.png");
+        viewIcon = new ImageIcon("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Cooking Book.png");
+        rateIcon = new ImageIcon("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Star Filled.png");
+        deleteIcon = new ImageIcon("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Delete.png");
+        saveIcon = new ImageIcon("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Save.png");
+        loadIcon = new ImageIcon("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Import.png");
+
+        // Load custom font
+        Font customFont = null;
+        try {
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("/Users/gurmangill/Downloads/CPSC 210/project_f0y3q/data/resources/Rosalia.otf")).deriveFont(24f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+
         recipeBook = new RecipeBook();
         setSize(600, 400);
         setTitle("PlatterPedia");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Set title label
         JLabel titleLabel = new JLabel("PlatterPedia");
-        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        titleLabel.setFont(customFont);
         titleLabel.setForeground(Color.black);
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(titleLabel, BorderLayout.NORTH);
@@ -60,12 +84,12 @@ public class GuiApp extends JFrame {
         southPanel.setBackground(Color.DARK_GRAY);
 
         inputField = new JTextField();
-        addButton = createButton("Add Recipe", new AddAction());
-        viewButton = createButton("View all Recipes", new ViewAction());
-        rateButton = createButton("Rate a Recipe (1 - 5 stars)", new RateAction());
-        deleteButton = createButton("Delete Recipe", new DeleteAction());
-        saveButton = createButton("Save Recipes", new SaveAction());
-        loadButton = createButton("Load Recipes", new LoadAction());
+        addButton = createButton(addIcon, new AddAction());
+        viewButton = createButton(viewIcon, new ViewAction());
+        rateButton = createButton(rateIcon, new RateAction());
+        deleteButton = createButton(deleteIcon, new DeleteAction());
+        saveButton = createButton(saveIcon, new SaveAction());
+        loadButton = createButton(loadIcon, new LoadAction());
 
         southPanel.add(inputField);
         southPanel.add(addButton);
@@ -78,8 +102,8 @@ public class GuiApp extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
-    private JButton createButton(String text, ActionListener listener) {
-        JButton button = new JButton(text);
+    private JButton createButton(ImageIcon icon, ActionListener listener) {
+        JButton button = new JButton(icon);
         button.addActionListener(listener);
         button.setForeground(Color.WHITE);
         button.setBackground(Color.DARK_GRAY);
@@ -118,7 +142,6 @@ public class GuiApp extends JFrame {
         }
     }
 
-
     private class RateAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -138,7 +161,6 @@ public class GuiApp extends JFrame {
             }
         }
     }
-
 
     private class DeleteAction implements ActionListener {
         @Override
