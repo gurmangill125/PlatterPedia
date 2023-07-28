@@ -3,7 +3,6 @@ package ui;
 import model.RecipeBook;
 import model.Recipe;
 import persistence.JsonFileHandler;
-import javax.swing.BorderFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +20,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-import java.net.URL;
+
 
 
 public class GuiApp extends JFrame {
@@ -126,6 +124,7 @@ public class GuiApp extends JFrame {
                     recipeBook.addRecipe(new Recipe(title, details));
                     inputField.setText("");
                     displayArea.setText(title + " added.");
+                    playSuccessSound();
                 }
             }
         }
@@ -159,6 +158,7 @@ public class GuiApp extends JFrame {
                     recipeBook.rateRecipe(title, rating);
                     inputField.setText("");
                     displayArea.setText(title + " rated.");
+                    playSuccessSound();
                 } catch (NumberFormatException ex) {
                     displayArea.setText("Invalid rating. Please enter a number.");
                 } catch (IllegalArgumentException ex) {
@@ -177,6 +177,7 @@ public class GuiApp extends JFrame {
                     recipeBook.deleteRecipe(input);
                     inputField.setText("");
                     displayArea.setText(input + " deleted.");
+                    playSuccessSound();
                 } catch (IllegalArgumentException ex) {
                     displayArea.setText("No recipe found with the given title.");
                 }
@@ -191,6 +192,7 @@ public class GuiApp extends JFrame {
                 JSONArray jsonArray = recipeBook.toJson();
                 JsonFileHandler.writeJsonFile("myFile.json", jsonArray);
                 displayArea.setText("Recipes saved to ./data/myFile.json");
+                playSuccessSound();
             } catch (IOException ex) {
                 displayArea.setText("Error writing to file.");
             }
@@ -204,9 +206,21 @@ public class GuiApp extends JFrame {
                 JSONArray jsonArray = JsonFileHandler.readJsonFile("myFile.json");
                 recipeBook = RecipeBook.fromJson(jsonArray);
                 displayArea.setText("Recipes loaded from file.");
+                playSuccessSound();
             } catch (IOException ex) {
                 displayArea.setText("Error reading file.");
             }
+        }
+    }
+
+    private void playSuccessSound() {
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/success.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 
