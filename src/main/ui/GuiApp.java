@@ -35,9 +35,9 @@ public class GuiApp extends JFrame {
     public GuiApp() {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-            UIManager.put("nimbusBase", new Color(75, 79, 87));
-            UIManager.put("nimbusGrey", new Color(110, 113, 117));
-            UIManager.put("control", new Color(110, 113, 117));
+            UIManager.put("nimbusBase", new Color(131, 222, 58));
+            UIManager.put("nimbusBlueGrey", new Color(153, 232, 124));
+            UIManager.put("control", Color.WHITE);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -74,14 +74,13 @@ public class GuiApp extends JFrame {
 
         displayArea = new JTextArea();
         displayArea.setEditable(false);
-        displayArea.setForeground(Color.WHITE);
-        displayArea.setBackground(Color.DARK_GRAY);
         JScrollPane scrollPane = new JScrollPane(displayArea);
+        scrollPane.setPreferredSize(new Dimension(600, 200)); // Set the preferred size here
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel southPanel = new JPanel();
-        southPanel.setLayout(new GridLayout(3, 2));
-        southPanel.setBackground(Color.DARK_GRAY);
+        southPanel.setLayout(new GridLayout(4, 2)); // Change the grid layout here to reduce the size
+
 
         inputField = new JTextField();
         addButton = createButton(addIcon, new AddAction());
@@ -106,9 +105,9 @@ public class GuiApp extends JFrame {
         JButton button = new JButton(icon);
         button.addActionListener(listener);
         button.setForeground(Color.WHITE);
-        button.setBackground(Color.DARK_GRAY);
         return button;
     }
+
 
     private class AddAction implements ActionListener {
         @Override
