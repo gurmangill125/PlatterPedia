@@ -145,4 +145,48 @@ public class RecipeBookTest {
         assertTrue(titles.contains(recipe2.getTitle()));
     }
 
+    @Test
+    public void testGetRecipe() {
+        recipeBook.addRecipe(recipe1);
+        Recipe result = recipeBook.getRecipe("Pancake");
+        assertEquals("Pancake", result.getTitle());
+        assertEquals("Mix the ingredients and cook them on a pan.", result.getDetails());
+    }
+
+    @Test
+    public void testGetRecipe_InvalidTitle() {
+        assertThrows(IllegalArgumentException.class, () -> recipeBook.getRecipe("Pizza"));
+    }
+
+    @Test
+    public void testGetRecipe_EmptyBook() {
+        assertThrows(IllegalArgumentException.class, () -> recipeBook.getRecipe("Pancake"));
+    }
+
+    @Test
+    public void testGetRecipe_MultipleRecipes() {
+        recipeBook.addRecipe(recipe1); // "Pancake"
+        recipeBook.addRecipe(recipe2); // "Scrambled Egg"
+        Recipe result = recipeBook.getRecipe("Scrambled Egg");
+        assertEquals("Scrambled Egg", result.getTitle());
+        assertEquals("Beat the eggs and cook them on a pan.", result.getDetails());
+    }
+
+    @Test
+    public void testGetRecipe_DuplicateTitles() {
+        Recipe recipe3 = new Recipe("Pancake", "A new method for making pancakes");
+        recipeBook.addRecipe(recipe1); // "Pancake"
+        recipeBook.addRecipe(recipe3); // Another "Pancake"
+        Recipe result = recipeBook.getRecipe("Pancake");
+        assertEquals("Pancake", result.getTitle());
+        assertEquals("Mix the ingredients and cook them on a pan.", result.getDetails());
+    }
+
+    @Test
+    public void testGetRecipe_NonExistentTitle() {
+        recipeBook.addRecipe(recipe1); // "Pancake"
+        recipeBook.addRecipe(recipe2); // "Scrambled Egg"
+        assertThrows(IllegalArgumentException.class, () -> recipeBook.getRecipe("Pizza"));
+    }
+
 }
