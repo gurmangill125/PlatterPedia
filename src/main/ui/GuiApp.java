@@ -60,6 +60,7 @@ public class GuiApp extends JFrame {
         getContentPane().setBackground(Color.WHITE);
     }
 
+
     private void loadIcons() {
         addIcon = new ImageIcon("data/resources/Plus.png");
         viewIcon = new ImageIcon("data/resources/Cooking Book.png");
@@ -174,6 +175,7 @@ public class GuiApp extends JFrame {
                     displayArea.setText(recipe.toString());
                 } catch (IllegalArgumentException ex) {
                     displayArea.setText("No recipe found with the given title.");
+                    playErrorSound();
                 }
             } else {
                 displayArea.setText(String.join("\n", recipeBook.listRecipeTitles()));
@@ -195,8 +197,10 @@ public class GuiApp extends JFrame {
                     playSuccessSound();
                 } catch (NumberFormatException ex) {
                     displayArea.setText("Invalid rating. Please enter a number.");
+                    playErrorSound();
                 } catch (IllegalArgumentException ex) {
                     displayArea.setText("No recipe found with the given title.");
+                    playErrorSound();
                 }
             }
         }
@@ -214,6 +218,7 @@ public class GuiApp extends JFrame {
                     playSuccessSound();
                 } catch (IllegalArgumentException ex) {
                     displayArea.setText("No recipe found with the given title.");
+                    playErrorSound();
                 }
             }
         }
@@ -229,6 +234,7 @@ public class GuiApp extends JFrame {
                 playSuccessSound();
             } catch (IOException ex) {
                 displayArea.setText("Error writing to file.");
+                playErrorSound();
             }
         }
     }
@@ -243,6 +249,7 @@ public class GuiApp extends JFrame {
                 playSuccessSound();
             } catch (IOException ex) {
                 displayArea.setText("Error reading file.");
+                playErrorSound();
             }
         }
     }
@@ -250,6 +257,17 @@ public class GuiApp extends JFrame {
     private void playSuccessSound() {
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/success.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void playErrorSound() {
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/error.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
             clip.start();
