@@ -23,6 +23,11 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * GuiApp is a JFrame that contains a user interface for interacting with a RecipeBook.
+ * It provides text fields for user input, buttons for executing actions,
+ * and a text area for displaying information to the user.
+ */
 public class GuiApp extends JFrame {
     private RecipeBook recipeBook;
 
@@ -41,10 +46,12 @@ public class GuiApp extends JFrame {
     private ImageIcon saveIcon;
     private ImageIcon loadIcon;
 
+    // EFFECTS: Initializes the user interface.
     public GuiApp() {
         initUI();
     }
 
+    // EFFECTS: Sets up UI properties, loads icons, sets up recipe book, and adds components.
     private void initUI() {
         setUpUIProperties();
         loadIcons();
@@ -53,6 +60,7 @@ public class GuiApp extends JFrame {
         addComponents(customFont);
     }
 
+    // EFFECTS: Sets up UI properties like tooltip color, font and background.
     private void setUpUIProperties() {
         UIManager.put("ToolTip.background", Color.lightGray);
         UIManager.put("ToolTip.foreground", Color.black);
@@ -60,7 +68,7 @@ public class GuiApp extends JFrame {
         getContentPane().setBackground(Color.WHITE);
     }
 
-
+    // EFFECTS: Loads in image icons from file paths
     private void loadIcons() {
         addIcon = new ImageIcon("data/resources/Plus.png");
         viewIcon = new ImageIcon("data/resources/Cooking Book.png");
@@ -70,6 +78,9 @@ public class GuiApp extends JFrame {
         loadIcon = new ImageIcon("data/resources/Import.png");
     }
 
+    // REQUIRES: Font file to exist at the specified location.
+    // MODIFIES: this
+    // EFFECT: Loads custom font from a file path, returns the font.
     private Font loadCustomFont() {
         Font customFont = null;
         try {
@@ -81,11 +92,16 @@ public class GuiApp extends JFrame {
         return customFont;
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the recipe book and sets the size of the window
     private void setUpRecipeBook() {
         recipeBook = new RecipeBook();
         setSize(1920, 1080);
     }
 
+    // REQUIRES: a customFont to be set for the UI components
+    // MODIFIES: this
+    // EFFECTS: adds the title label and display area, and adds the south panel with components
     private void addComponents(Font customFont) {
         addTitleLabel(customFont);
         addDisplayArea();
@@ -93,6 +109,9 @@ public class GuiApp extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
+    // REQUIRES: a customFont to be set for the title label
+    // MODIFIES: this
+    // EFFECTS: creates and adds a title label to the UI
     private void addTitleLabel(Font customFont) {
         GradientLabel titleLabel = new GradientLabel("PlatterPedia", new Color(76, 175, 80), new Color(139, 195, 74));
         titleLabel.setFont(customFont.deriveFont(Font.BOLD));
@@ -101,6 +120,8 @@ public class GuiApp extends JFrame {
         add(titleLabel, BorderLayout.NORTH);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds a non-editable text area for displaying information, added to a scroll pane
     private void addDisplayArea() {
         displayArea = new JTextArea();
         displayArea.setEditable(false);
@@ -109,6 +130,9 @@ public class GuiApp extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    // REQUIRES: a customFont to be set for the UI components
+    // MODIFIES: this
+    // EFFECTS: creates and sets up a panel in the south layout of the UI
     private JPanel createSouthPanel(Font customFont) {
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new GridLayout(3, 3));
@@ -117,6 +141,9 @@ public class GuiApp extends JFrame {
         return southPanel;
     }
 
+    // REQUIRES: a JPanel to add components and a customFont to be set for the labels
+    // MODIFIES: this, southPanel
+    // EFFECTS: adds components such as labels, text field and buttons to the provided panel
     private void addComponentsToSouthPanel(JPanel southPanel, Font customFont) {
         JLabel inputLabel = new JLabel("Welcome to PlatterPedia, your digital Recipe manager.");
         inputLabel.setFont(customFont.deriveFont(17f));
@@ -141,6 +168,9 @@ public class GuiApp extends JFrame {
         southPanel.add(loadButton);
     }
 
+    // REQUIRES: an icon for the button, an action listener to handle button events, a tooltip string
+    // MODIFIES: this
+    // EFFECTS: creates a button with specified icon, action listener and tooltip, and returns it
     private GradientButton createButton(ImageIcon icon, ActionListener listener, String tooltip) {
         Color c1 = new Color(76, 175, 80);
         Color c2 = new Color(139, 195, 74);
@@ -149,6 +179,9 @@ public class GuiApp extends JFrame {
         return button;
     }
 
+    // MODIFIES: this, recipeBook
+    // EFFECTS: handles the event when the Add button is pressed. Creates a new recipe with inputted details and
+    //          adds it to the recipe book.
     private class AddAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -165,6 +198,10 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // REQUIRES: a recipe with the specified title to exist in the recipeBook
+    // MODIFIES: this
+    // EFFECTS: handles the event when the View button is pressed. Displays the details of the selected recipe or
+    //          a list of all recipes if no title is entered.
     private class ViewAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -183,6 +220,9 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // REQUIRES: a recipe with the specified title to exist in the recipeBook, and a valid integer as input for rating
+    // MODIFIES: this, recipeBook
+    // EFFECTS: handles the event when the Rate button is pressed. Rates the selected recipe with user inputted rating.
     private class RateAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -206,6 +246,9 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // REQUIRES: a recipe with the specified title to exist in the recipeBook
+    // MODIFIES: this, recipeBook
+    // EFFECTS: handles the event when the Delete button is pressed. Deletes the selected recipe from the recipeBook.
     private class DeleteAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -224,6 +267,8 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // MODIFIES: this, external file "myFile.json"
+    // EFFECTS: handles the event when the Save button is pressed. Saves the current recipes to a json file.
     private class SaveAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -239,6 +284,9 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // REQUIRES: the file with the name "myFile.json" to exist and to be readable
+    // MODIFIES: this, recipeBook
+    // EFFECTS: handles the event when the Load button is pressed. Loads recipes from a json file into the recipeBook.
     private class LoadAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -254,6 +302,7 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // EFFECTS: plays a success sound
     private void playSuccessSound() {
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/success.wav"));
@@ -265,6 +314,7 @@ public class GuiApp extends JFrame {
         }
     }
 
+    // EFFECTS: plays an error sound
     private void playErrorSound() {
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/error.wav"));

@@ -42,7 +42,7 @@ The following user stories depict the core functionalities and use-cases of the 
 7. **Load a Recipe Book**: As a user, when I start PlatterPedia, I want to be given the option to load my to-do list from file.
 
 # Instructions for Grader
-
+**Note: If you hover over each icon, it will provide a helpful tool tip that indicates what the button does.**
 - You can generate the first required action related to adding Xs (Recipes) to a Y (Recipe Book) by inputting a dish into the white box and clicking the plus (+) button from the menu. This will open up a window where you add your recipe's details. Once you're done inputting the details, click the "Okay" button to successfully add your recipe.
 - You can generate the second required action related to adding Xs (Recipes) to a Y (Recipe Book) by viewing a recipe in your recipe book by first inputting the recipe you want to view into the white box and clicking the large book button, which will open up all the details of the recipe. Additionally, you can view all your recipes by clicking the same book icon but having nothing in your input box. 
 - By default, your recipe will be unrated and given a rating of -1. In order to rate a recipe, you input the recipe into the white box and click the star icon in order to give it a rating from 1-5. Once you've inputted the rating, click "Okay" and it will successfully have rated the recipe.
@@ -50,3 +50,4 @@ The following user stories depict the core functionalities and use-cases of the 
 - You can locate my visual component by simply running the application. On startup, there is a splashscreen that appears for 5 seconds once the application runs.
 - You can save the state of my application by clicking the Save Icon, which is a large floppy disk icon. This will save all recipe's in the recipe book. 
 - You can reload the state of my application by clicking the Load Icon, which is an arrow pointing left into a file, which will load your save file.
+

@@ -7,10 +7,16 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JLabel;
 
+/**
+ * GradientLabel is a subclass of JLabel that paints its background with a gradient color.
+ * The gradient color is defined by two colors passed to the constructor.
+ */
 public class GradientLabel extends JLabel {
     private Color color1;
     private Color color2;
 
+    // REQUIRES: text should not be null; color1 and color2 should be valid Color objects.
+    // EFFECTS: Creates a new GradientLabel with the specified text, color1, and color2.
     public GradientLabel(String text, Color color1, Color color2) {
         super(text);
         this.color1 = color1;
@@ -18,6 +24,8 @@ public class GradientLabel extends JLabel {
         setOpaque(false);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Paints the component with a gradient color.
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
