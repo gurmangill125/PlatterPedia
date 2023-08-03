@@ -57,6 +57,10 @@ public class GuiApp extends JFrame {
         loadIcons();
         Font customFont = loadCustomFont();
         setUpRecipeBook();
+        addTitleLabel();
+        addDisplayArea();
+        JPanel southPanel = createSouthPanel(customFont);
+        add(southPanel, BorderLayout.SOUTH);
         addComponents(customFont);
     }
 
@@ -103,22 +107,26 @@ public class GuiApp extends JFrame {
     // MODIFIES: this
     // EFFECTS: adds the title label and display area, and adds the south panel with components
     private void addComponents(Font customFont) {
-        addTitleLabel(customFont);
+        addTitleLabel();
         addDisplayArea();
         JPanel southPanel = createSouthPanel(customFont);
         add(southPanel, BorderLayout.SOUTH);
     }
 
-    // REQUIRES: a customFont to be set for the title label
     // MODIFIES: this
-    // EFFECTS: creates and adds a title label to the UI
-    private void addTitleLabel(Font customFont) {
-        GradientLabel titleLabel = new GradientLabel("PlatterPedia", new Color(76, 175, 80), new Color(139, 195, 74));
-        titleLabel.setFont(customFont.deriveFont(Font.BOLD));
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(titleLabel, BorderLayout.NORTH);
+    // EFFECTS: creates and adds a title label with a gif to the UI
+    private void addTitleLabel() {
+        ImageIcon gifIcon = new ImageIcon("data/resources/logo.gif");
+
+        Color color1 = new Color(76, 175, 80);
+        Color color2 = new Color(139, 195, 74);
+
+        GradientLabel gifLabel = new GradientLabel("", color1, color2);
+        gifLabel.setIcon(gifIcon);
+        gifLabel.setPreferredSize(new Dimension(100, 100));
+        add(gifLabel, BorderLayout.NORTH);
     }
+
 
     // MODIFIES: this
     // EFFECTS: creates and adds a non-editable text area for displaying information, added to a scroll pane
