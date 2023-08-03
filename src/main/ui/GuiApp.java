@@ -211,6 +211,7 @@ public class GuiApp extends JFrame {
     // EFFECTS: handles the event when the View button is pressed. Displays the details of the selected recipe or
     //          a list of all recipes if no title is entered.
     private class ViewAction implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             String title = inputField.getText();
