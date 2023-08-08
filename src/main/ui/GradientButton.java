@@ -10,11 +10,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JButton;
 
-/**
- * GradientButton is a subclass of JButton that paints its background with a gradient color.
- * The gradient color is defined by two colors passed to the constructor.
- * It also takes an icon, action listener and tooltip text.
- */
+
+// GradientButton is a subclass of JButton that paints its background with a gradient color.
+// The gradient color is defined by two colors passed to the constructor.
+// It also takes an icon, action listener and tooltip text.
 public class GradientButton extends JButton {
     private Color color1;
     private Color color2;

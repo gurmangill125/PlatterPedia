@@ -23,11 +23,14 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- * GuiApp is a JFrame that contains a user interface for interacting with a RecipeBook.
- * It provides text fields for user input, buttons for executing actions,
- * and a text area for displaying information to the user.
- */
+
+// GuiApp is a JFrame that contains a user interface for interacting with a RecipeBook.
+// It provides text fields for user input, buttons for executing actions, and a text area for displaying information to
+// the user.
+
+// CITATION: Consistently referenced the following programs when designing this class and its methods:
+//           SmartHome - https://learning.edge.edx.org/course/course-v1:UBC+CPSC210+2023S2/block-v1:UBC+CPSC210+2023S2+type@sequential+block@97dffa7a4f534de695168e0d7b3d7b13/block-v1:UBC+CPSC210+2023S2+type@vertical+block@b345298bfcf04f47b2b1c0759bcc5b47
+//           AlarmSystem - https://learning.edge.edx.org/course/course-v1:UBC+CPSC210+2023S2/block-v1:UBC+CPSC210+2023S2+type@sequential+block@ce6f3a154cc64f2c98be9b33d8ff11d7/block-v1:UBC+CPSC210+2023S2+type@vertical+block@da1b89f8eda74802bb08cb4518f17781
 public class GuiApp extends JFrame {
     private RecipeBook recipeBook;
 
@@ -328,6 +331,8 @@ public class GuiApp extends JFrame {
     }
 
     // EFFECTS: plays a success sound
+    // CITATION: Some components were based on the following YouTube video from "Bro Code"
+    //           https://www.youtube.com/watch?v=SyZQVJiARTQ
     private void playSuccessSound() {
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/success.wav"));
@@ -340,6 +345,8 @@ public class GuiApp extends JFrame {
     }
 
     // EFFECTS: plays an error sound
+    // CITATION: Some components were based on the following YouTube video from "Bro Code"
+    //           https://www.youtube.com/watch?v=SyZQVJiARTQ
     private void playErrorSound() {
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("data/resources/error.wav"));
