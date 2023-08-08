@@ -89,6 +89,8 @@ public class GuiApp extends JFrame {
     // REQUIRES: Font file to exist at the specified location.
     // MODIFIES: this
     // EFFECT: Loads custom font from a file path, returns the font.
+    // CITATION: Code design was based on the following Stack Overflow post:
+    //           https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
     private Font loadCustomFont() {
         Font customFont = null;
         try {
@@ -103,6 +105,8 @@ public class GuiApp extends JFrame {
     // REQUIRES: Font file to exist at the specified location.
     // MODIFIES: this
     // EFFECT: Loads custom font from a file path, returns the font.
+    // CITATION: Code design was based on the following Stack Overflow post:
+    //           https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
     private Font loadTextFont() {
         Font textFont = null;
         try {
