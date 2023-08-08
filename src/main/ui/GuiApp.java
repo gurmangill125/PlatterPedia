@@ -46,7 +46,6 @@ public class GuiApp extends JFrame {
     private ImageIcon saveIcon;
     private ImageIcon loadIcon;
 
-
     // EFFECTS: Initializes the user interface.
     public GuiApp() {
         initUI();
