@@ -9,6 +9,7 @@ import java.nio.file.Path;
 // Code inspired by JsonSerializationDemo, specifically JsonReader and JsonWriter classes
 public class JsonFileHandler {
 
+    // EFFECTS: constructs an empty JsonFileHandler
     private JsonFileHandler() {
 
     }

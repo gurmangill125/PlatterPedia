@@ -34,6 +34,8 @@ public class GradientButton extends JButton {
     // REQUIRES: A valid Graphics object.
     // MODIFIES: this
     // EFFECTS: Paints the component with a gradient color.
+    // CITATION: Referenced code from the following Stack Overflow post when designing this method:
+    //           https://stackoverflow.com/questions/27641641/creating-a-jlabel-with-a-gradient
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();

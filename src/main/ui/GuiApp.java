@@ -46,6 +46,7 @@ public class GuiApp extends JFrame {
     private ImageIcon saveIcon;
     private ImageIcon loadIcon;
 
+
     // EFFECTS: Initializes the user interface.
     public GuiApp() {
         initUI();
@@ -56,9 +57,10 @@ public class GuiApp extends JFrame {
         setUpUIProperties();
         loadIcons();
         Font customFont = loadCustomFont();
+        Font textFont = loadTextFont();
         setUpRecipeBook();
         addTitleLabel();
-        addDisplayArea();
+        addDisplayArea(textFont);
         JPanel southPanel = createSouthPanel(customFont);
         add(southPanel, BorderLayout.SOUTH);
         addComponents(customFont);
@@ -96,6 +98,20 @@ public class GuiApp extends JFrame {
         return customFont;
     }
 
+    // REQUIRES: Font file to exist at the specified location.
+    // MODIFIES: this
+    // EFFECT: Loads custom font from a file path, returns the font.
+    private Font loadTextFont() {
+        Font textFont = null;
+        try {
+            textFont = Font.createFont(Font.TRUETYPE_FONT, new File("data/resources/Tommy.otf")).deriveFont(24f);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(textFont);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        return textFont;
+    }
+
     // MODIFIES: this
     // EFFECTS: initializes the recipe book and sets the size of the window
     private void setUpRecipeBook() {
@@ -108,7 +124,7 @@ public class GuiApp extends JFrame {
     // EFFECTS: adds the title label and display area, and adds the south panel with components
     private void addComponents(Font customFont) {
         addTitleLabel();
-        addDisplayArea();
+        addDisplayArea(loadTextFont());
         JPanel southPanel = createSouthPanel(customFont);
         add(southPanel, BorderLayout.SOUTH);
     }
@@ -130,8 +146,9 @@ public class GuiApp extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: creates and adds a non-editable text area for displaying information, added to a scroll pane
-    private void addDisplayArea() {
+    private void addDisplayArea(Font textFont) {
         displayArea = new JTextArea();
+        displayArea.setFont(textFont.deriveFont(17f));
         displayArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(displayArea);
         scrollPane.setPreferredSize(new Dimension(600, 200));

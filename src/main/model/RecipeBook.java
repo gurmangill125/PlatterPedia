@@ -76,7 +76,7 @@ public class RecipeBook {
         return recipeBook;
     }
 
-    // returns the recipe if its the recipe we are searching for
+    // EFFECTS: returns the recipe if it's the recipe we are searching for
     public Recipe getRecipe(String title) {
         for (Recipe recipe : this.recipes) {  // Assuming 'recipes' is the collection of Recipe objects.
             if (recipe.getTitle().equals(title)) {

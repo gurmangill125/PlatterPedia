@@ -22,10 +22,9 @@ public class App {
     }
 
 
-
-    // Following code inspired by TellerApp class in TellerApp project
     // MODIFIES: this
     // EFFECTS: starts the application, provides a menu for user to interact with the app
+    // CITATION: Following code inspired by TellerApp class in TellerApp project
     public void start() {
         if (askUser("Would you like to load your recipes from file? (y/n)")) {
             try {

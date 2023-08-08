@@ -15,7 +15,6 @@ public class GradientLabel extends JLabel {
     private Color color1;
     private Color color2;
 
-    // REQUIRES: text should not be null; color1 and color2 should be valid Color objects.
     // EFFECTS: Creates a new GradientLabel with the specified text, color1, and color2.
     public GradientLabel(String text, Color color1, Color color2) {
         super(text);
@@ -26,6 +25,8 @@ public class GradientLabel extends JLabel {
 
     // MODIFIES: this
     // EFFECTS: Paints the component with a gradient color.
+    // CITATION: Referenced code from the following Stack Overflow post when designing this method:
+    //           https://stackoverflow.com/questions/27641641/creating-a-jlabel-with-a-gradient
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
