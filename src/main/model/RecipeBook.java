@@ -18,6 +18,7 @@ public class RecipeBook {
     // MODIFIES: this
     // EFFECTS: adds a new recipe to the recipe book
     public void addRecipe(Recipe recipe) {
+        EventLog.getInstance().logEvent(new Event("Recipe added: " + recipe.getTitle()));
         this.recipes.add(recipe);
     }
 
@@ -37,6 +38,7 @@ public class RecipeBook {
     public void rateRecipe(String title, int rating) {
         Recipe recipe = this.viewRecipe(title);
         recipe.rate(rating);
+        EventLog.getInstance().logEvent(new Event("Recipe rated: " + title + ", Rating: " + rating));
     }
 
     // MODIFIES: this
@@ -44,6 +46,7 @@ public class RecipeBook {
     public void deleteRecipe(String title) {
         Recipe recipe = this.viewRecipe(title);
         this.recipes.remove(recipe);
+        EventLog.getInstance().logEvent(new Event("Recipe deleted: " + title));
     }
 
     // EFFECTS: returns a recipe matching the given title, throws an exception if the recipe does not exist

@@ -54,3 +54,30 @@ To start the application, run **"Main"** located in the **ui package.**
 - You can save the state of my application by clicking the Save Icon, which is a large floppy disk icon. This will save all recipe's in the recipe book. 
 - You can reload the state of my application by clicking the Load Icon, which is an arrow pointing left into a file, which will load your save file.
 
+# Phase 4: Task 2
+
+Logged events:
+
+Wed Aug 09 01:10:59 PDT 2023
+
+Recipe added: Cookies
+
+Wed Aug 09 01:11:01 PDT 2023
+
+Recipe added: Pizza
+
+Wed Aug 09 01:11:05 PDT 2023
+
+Recipe rated: Cookies, Rating: 4
+
+Wed Aug 09 01:11:08 PDT 2023
+
+Recipe rated: Pizza, Rating: 3
+
+Wed Aug 09 01:11:10 PDT 2023
+
+Recipe rated: Cookies, Rating: 2
+
+Wed Aug 09 01:11:12 PDT 2023
+
+Recipe deleted: Pizza

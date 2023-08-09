@@ -1,6 +1,8 @@
 package ui;
 
 import javax.swing.*;
+import model.Event;
+import model.EventLog;
 
 // Represents the main method of the application which runs the App
 public class Main {
@@ -12,5 +14,17 @@ public class Main {
             guiApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             guiApp.setVisible(true);
         });
+
+        // Add a shutdown hook to print the events log when the application is closing
+        Runtime.getRuntime().addShutdownHook(new Thread(Main::printEventLog));
+    }
+
+    // Print all the logged events to the console
+    private static void printEventLog() {
+        System.out.println("Logged events:");
+        EventLog eventLog = EventLog.getInstance();
+        for (Event event : eventLog) {
+            System.out.println(event);
+        }
     }
 }
