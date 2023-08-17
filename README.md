@@ -41,51 +41,7 @@ The following user stories depict the core functionalities and use-cases of the 
 6. **Save a Recipe Book**: As a user, when I select the exit option from the PlatterPedia menu, I want to be reminded to save my to-do list to file and have the option to do so or not.
 7. **Load a Recipe Book**: As a user, when I start PlatterPedia, I want to be given the option to load my to-do list from file.
 
-# Instructions for Grader
+
 **Note: If you hover over each icon, it will provide a helpful tool tip that indicates what the button does.**
 
 To start the application, run **"Main"** located in the **ui package.**
-
-- You can generate the first required action related to adding Xs (Recipes) to a Y (Recipe Book) by inputting a dish into the white box and clicking the plus (+) button from the menu. This will open up a window where you add your recipe's details. Once you're done inputting the details, click the "Okay" button to successfully add your recipe.
-- You can generate the second required action related to adding Xs (Recipes) to a Y (Recipe Book) by deleting Recipes from the Recipe Book by inputting the recipe you'd wish to delete into the white box and clicking the garbage bin icon, which will delete the recipe.
-- You can view a recipe in your recipe book by first inputting the recipe you want to view into the white box and clicking the large book button, which will open up all the details of the recipe. Additionally, you can view all your recipes by clicking the same book icon but having nothing in your input box. 
-- By default, your recipe will be unrated and given a rating of -1. In order to rate a recipe, you input the recipe into the white box and click the star icon in order to give it a rating from 1-5. Once you've inputted the rating, click "Okay" and it will successfully have rated the recipe.
-- You can locate my visual component by simply running the application. On startup, there is a splashscreen that appears for 5 seconds once the application runs.
-- You can save the state of my application by clicking the Save Icon, which is a large floppy disk icon. This will save all recipe's in the recipe book. 
-- You can reload the state of my application by clicking the Load Icon, which is an arrow pointing left into a file, which will load your save file.
-
-# Phase 4: Task 2
-
-Logged events:
-
-Wed Aug 09 01:10:59 PDT 2023
-
-Recipe added: Cookies
-
-Wed Aug 09 01:11:01 PDT 2023
-
-Recipe added: Pizza
-
-Wed Aug 09 01:11:05 PDT 2023
-
-Recipe rated: Cookies, Rating: 4
-
-Wed Aug 09 01:11:08 PDT 2023
-
-Recipe rated: Pizza, Rating: 3
-
-Wed Aug 09 01:11:10 PDT 2023
-
-Recipe rated: Cookies, Rating: 2
-
-Wed Aug 09 01:11:12 PDT 2023
-
-Recipe deleted: Pizza
-
-# Phase 4: Task 3
-
-Some potential refactoring in the existing design that I would do would be to introduce interfaces or abstract classes to encapsulate common behavior and promote code reusability. Specifically, I might consider defining a common interface for the various UI components such as GradientButton, GradientLabel, and SplashScreen. An interface like CustomUIComponent could define common methods and properties that these classes must implement. This approach would make the code more flexible and maintainable, allowing us to add new custom UI components more easily in the future.
-
-If I were to see these improvements through, it would enhance the code's maintainability, flexibility, and testability without altering its existing functionality or adding new features. Not only would more interfaces and abstract functions make the code reusable, but also easier to use and understand if any other developer in the future were to look at my program and want to add on or make changes to it. 
-
-
