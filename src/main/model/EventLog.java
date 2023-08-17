@@ -57,4 +57,5 @@ public class EventLog implements Iterable<Event> {
     public Iterator<Event> iterator() {
         return events.iterator();
     }
+
 }
